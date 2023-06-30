@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<manifest>
+    <application name="CSK_Module_ImagePlayer">
+        <crown name="CSK_Module_ImagePlayer">
+            <desc>This is an automatically generated CROWN (description not necessary).</desc>
+        </crown>
+        <crown name="CSK_ImagePlayer">
+            <trait>released</trait>
+            <desc>Module to load offline images and to (optionally) forward them via event to other modules via event "CSK_ImagePlayer.OnNewImage". +
+Typically the features of this module are used like this (check also main script of this module): +
+{empty} +
+**1) Setup** +
+Set image type to load via "setImageType". +
+Select path to the images via "setPath". +
+If you want to periodically load the images it is possible to set the cycle time via "setCycleTime". +
+To resize the image it is possible to set the resoze factor via "setResizeFactor". +
+Via "setForwardImage" it is possible to activate the module to forward the loaded image via its CSK_ImagePlayer.OnNewImage event. +
+Start to load images via "startProvider" or "triggerOnce" +
+{empty} +
+</desc>
+            <enum name="ImageTypes" trait="released">
+                <desc>Image types to load.</desc>
+                <item desc="JPG images." name="jpg">jpg</item>
+                <item desc="PNG images." name="png">png</item>
+                <item desc="BMP images." name="bmp">bmp</item>
+            </enum>
+            <serves>
+                <event name="OnNewStatusLoadParameterOnReboot">
+                    <desc>Notify status if parameters should be loaded on app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnPersistentDataModuleAvailable">
+                    <desc>Notify status if features of CSK_PersistentData module are available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewImage">
+                    <desc>Event to forward images per default.</desc>
+                    <param alias="Image" desc="Image" multiplicity="1" name="image" type="object"/>
+                    <param desc="Timestamp" multiplicity="1" name="timestamp" type="int"/>
+                </event>
+                <event name="OnNewStatusViewerActive">
+                    <desc>Notify status of UI viewer activation.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewCycleTime">
+                    <desc>Notify cycle time.</desc>
+                    <param desc="Time" multiplicity="1" name="time" type="int"/>
+                </event>
+                <event name="OnNewStatusForwardImage">
+                    <desc>Notify status of forwarding images.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnPlayerActive">
+                    <desc>Notify status of image player activation.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewPath">
+                    <desc>Notify local offlline image path.</desc>
+                    <param desc="Local image path." multiplicity="1" name="path" type="string"/>
+                </event>
+                <event name="OnNewResizeFactor">
+                    <desc>Notify new resize factor.</desc>
+                    <param desc="Factor" multiplicity="1" name="factor" type="float"/>
+                </event>
+                <event name="OnNewImageType">
+                    <desc>Notify type of images to load.</desc>
+                    <param desc="Image type (jpg, bmp, png)." multiplicity="1" name="type" type="string"/>
+                </event>
+                <event name="OnDataLoadedOnReboot">
+                    <desc>Event to call if module tried to load parameters and should be ready.</desc>
+                </event>
+                <event name="OnNewImageSizeToShare">
+                    <desc>Notify that there is a new image size so that e.g. other modules can react on that (e.g. by triggering new measurement of the resulting new image size). +
+This event will be notified if the resizeFactor was changed via "setResizeFactor".</desc>
+                    <param desc="The name of the event which provides the images (currently 'CSK_ImagePlayer.OnNewImage')." multiplicity="1" name="relatedEvent" type="string"/>
+                </event>
+                <event name="OnUserLevelOperatorActive">
+                    <desc>Status of Operator userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelMaintenanceActive">
+                    <desc>Status of Maintenance userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelServiceActive">
+                    <desc>Status of Service userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnUserLevelAdminActive">
+                    <desc>Status of Admin userlevel. Used internally in combination with the CSK_UserManagement module if available.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
+                <event name="OnNewParameterName">
+                    <desc>Notify name of persistent data parameter.</desc>
+                    <param desc="Parameter name" multiplicity="1" name="name" type="string"/>
+                </event>
+                <function name="setParameterName">
+                    <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
+                    <param desc="Name of the parameter." multiplicity="1" name="name" type="string"/>
+                </function>
+                <function name="sendParameters">
+                    <desc>Send parameters to CSK_PersistentData module if possible to save them.</desc>
+                </function>
+                <function name="loadParameters">
+                    <desc>Load parameters for this module from the CSK_PersistentData module if possible and use them.</desc>
+                </function>
+                <function name="setLoadOnReboot">
+                    <desc>Configure if this module should load its saved parameters at app/device boot up.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="pageCalled">
+                    <desc>Function to register "On Resume" of the module UI ( (only helper function).</desc>
+                    <return desc="Empty string (only needed to simplify binding)." multiplicity="1" name="empty" type="string"/>
+                </function>
+                <function name="startProvider">
+                    <desc>Start provider to load images.</desc>
+                </function>
+                <function name="stopProvider">
+                    <desc>Stop provider to load images.</desc>
+                </function>
+                <function name="triggerOnce">
+                    <desc>Load only one single image.</desc>
+                </function>
+                <function name="setViewerActive">
+                    <desc>Set if UI should show images in viewer.</desc>
+                    <param desc="status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setCycleTime">
+                    <desc>Set cycle time of loading images.</desc>
+                    <param desc="Time in ms" multiplicity="1" name="time" type="int"/>
+                </function>
+                <function name="setForwardImage">
+                    <desc>Set if images should be forwarded via event.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </function>
+                <function name="setPath">
+                    <desc>Set path to load iamges from.</desc>
+                    <param desc="Local Path (like '/public/images')" multiplicity="1" name="path" type="string"/>
+                </function>
+                <function name="setResizeFactor">
+                    <desc>Set resize factor for loaded images. +
+INFO: If the internal resizeFactor is changed, this module will notify the "OnNewImageSizeToShare", so that other modules can react on that. +</desc>
+                    <param desc="Factor" multiplicity="1" name="factor" type="float"/>
+                </function>
+                <function name="setImageType">
+                    <desc>Set image type</desc>
+                    <param desc="Image type (bmp, jpg, png)" multiplicity="1" name="imgType" ref="CSK_ImagePlayer.ImageTypes" type="enum"/>
+                </function>
+            </serves>
+        </crown>
+        <meta key="author">SICK AG</meta>
+        <meta key="version">2.4.0</meta>
+        <meta key="priority">low</meta>
+        <meta key="copy-protected">false</meta>
+        <meta key="read-protected">false</meta>
+        <meta key="crown2-flow-engine">false</meta>
+        <meta key="LuaLoadAllEngineAPI">false</meta>
+        <entry default="CSK_Module_ImagePlayer.lua" path="scripts"/>
+    </application>
+</manifest>

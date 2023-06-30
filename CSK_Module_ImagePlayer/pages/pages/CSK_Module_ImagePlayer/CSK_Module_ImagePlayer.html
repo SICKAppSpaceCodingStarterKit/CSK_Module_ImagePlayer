@@ -1,0 +1,254 @@
+<layout-row id="RowLayout1">
+	<layout-column id="ColumnLayout10" style="align-items: stretch">
+		<stacked-view id="SV_Login">
+			<stacked-pane id="SP_LoggedIn" value="true">
+				<layout-row id="RowLayout13">
+					<layout-column id="ColumnLayout5" style="align-items: stretch">
+						<sick-viewer2d id="Viewer2D1" viewer-id="ImgPlayerViewer"
+							style="width: 100%; height: 500px">
+						</sick-viewer2d>
+						<layout-row id="RowLayout4" style="justify-content: space-between">
+							<layout-column id="ColumnLayout1" style="align-items: stretch">
+								<davinci-button id="Button1" type="primary" icon-position="append">
+									<span>Start</span>
+									<crown-binding event="submit" name="CSK_ImagePlayer/startProvider"
+										auto-commit>
+									</crown-binding>
+								</davinci-button>
+							</layout-column>
+							<layout-column id="ColumnLayout7" style="align-items: stretch">
+								<davinci-button id="Button3" type="primary" icon-position="append">
+									<span>Stop</span>
+									<crown-binding event="submit" name="CSK_ImagePlayer/stopProvider"
+										auto-commit>
+									</crown-binding>
+								</davinci-button>
+							</layout-column>
+							<layout-column id="ColumnLayout6" style="align-items: stretch">
+								<davinci-button id="Button2" type="primary" icon-position="append">
+									<span>SingleTrigger</span>
+									<crown-binding event="submit" name="CSK_ImagePlayer/triggerOnce"
+										auto-commit>
+									</crown-binding>
+								</davinci-button>
+							</layout-column>
+						</layout-row>
+					</layout-column>
+					<layout-column id="ColumnLayout8" style="align-items: stretch">
+						<layout-row id="RowLayout6">
+							<layout-column id="ColumnLayout9"
+								class="myCustomFrame_CSK_Module_ImagePlayer"
+								style="align-items: stretch">
+								<layout-row id="RowLayout8"
+									style="justify-content: space-between; align-items: center">
+									<davinci-value-display id="VD_ViewerActive" value="Viewer active:">
+									</davinci-value-display>
+									<davinci-checkbox id="CB_ViewerActive">
+										<span></span>
+										<crown-binding event="change" name="CSK_ImagePlayer/setViewerActive"
+											path="param/args/status" auto-commit>
+										</crown-binding>
+										<crown-edpws-binding property="checked"
+											name="CSK_ImagePlayer/OnNewStatusViewerActive" update-on-resume>
+										</crown-edpws-binding>
+									</davinci-checkbox>
+								</layout-row>
+								<layout-row id="RowLayout9"
+									style="justify-content: space-between; align-items: center">
+									<davinci-value-display id="VD_ForwardImage" value="Forward image:"
+										title="Forward loaded images within &quot;CSK_ImagePlayer.OnNewImage&quot;-event for other modules.">
+									</davinci-value-display>
+									<davinci-checkbox id="CB_ForwardImage"
+										title="Forward loaded images within &quot;CSK_ImagePlayer.OnNewImage&quot;-event for other modules.">
+										<span></span>
+										<crown-edpws-binding property="checked"
+											name="CSK_ImagePlayer/OnNewStatusForwardImage" update-on-resume>
+										</crown-edpws-binding>
+										<crown-binding event="change" name="CSK_ImagePlayer/setForwardImage"
+											path="param/args/status" auto-commit>
+										</crown-binding>
+									</davinci-checkbox>
+								</layout-row>
+								<layout-row id="RowLayout7"
+									style="align-items: center; justify-content: space-between">
+									<davinci-value-display id="VD_CycleTime" value="Cycle time:">
+									</davinci-value-display>
+									<davinci-numeric-field id="NF_CycleTime" type="outline" min="0"
+										max="+Infinity" ticks="1" group-separator=","
+										decimal-separator="." format-pattern="0">
+										<crown-edpws-binding property="value"
+											name="CSK_ImagePlayer/OnNewCycleTime" update-on-resume>
+										</crown-edpws-binding>
+										<crown-binding event="change" name="CSK_ImagePlayer/setCycleTime"
+											path="param/args/time" auto-commit>
+										</crown-binding>
+										<crown-edpws-binding property="disabled"
+											name="CSK_ImagePlayer/OnPlayerActive" update-on-resume>
+										</crown-edpws-binding>
+									</davinci-numeric-field>
+								</layout-row>
+								<layout-row id="RowLayout10"
+									style="justify-content: space-between; align-items: center">
+									<davinci-value-display id="VD_ImagePath" value="Image path:"
+										title="Path to the images like '/public/images'">
+									</davinci-value-display>
+									<davinci-text-field id="TF_ImagePath" type="text"
+										title="Path to the images like '/public/images'">
+										<crown-edpws-binding property="value" name="CSK_ImagePlayer/OnNewPath"
+											update-on-resume>
+										</crown-edpws-binding>
+										<crown-binding event="change" name="CSK_ImagePlayer/setPath"
+											path="param/args/path" auto-commit>
+										</crown-binding>
+										<crown-edpws-binding property="disabled"
+											name="CSK_ImagePlayer/OnPlayerActive" update-on-resume>
+										</crown-edpws-binding>
+									</davinci-text-field>
+								</layout-row>
+								<layout-row id="RowLayout12"
+									style="justify-content: space-between; align-items: center">
+									<davinci-value-display id="VD_ImageType" value="Image type:"
+										title="Image type to load">
+									</davinci-value-display>
+									<davinci-drop-down id="DD_ImageType" title="Image type to load">
+										<davinci-option id="Option1" value="jpg">
+											<span>jpg</span>
+										</davinci-option>
+										<davinci-option id="Option3" value="bmp">
+											<span>bmp</span>
+										</davinci-option>
+										<davinci-option id="Option2" value="png">
+											<span>png</span>
+										</davinci-option>
+										<crown-edpws-binding property="value"
+											name="CSK_ImagePlayer/OnNewImageType" update-on-resume>
+										</crown-edpws-binding>
+										<crown-binding event="change" name="CSK_ImagePlayer/setImageType"
+											path="param/args/imgType" auto-commit>
+										</crown-binding>
+									</davinci-drop-down>
+								</layout-row>
+								<layout-row id="RowLayout11"
+									style="justify-content: space-between; align-items: center">
+									<davinci-value-display id="VD_ResizeFactor"
+										value="Image resize factor:"
+										title="Factor to rescale the loaded images.">
+									</davinci-value-display>
+									<davinci-slider id="S_ResizeFactor" min="0.1" max="1" ticks="0.1"
+										title="Factor to rescale the loaded images." style="width: 50%">
+										<span></span>
+										<crown-edpws-binding property="value"
+											name="CSK_ImagePlayer/OnNewResizeFactor" update-on-resume>
+										</crown-edpws-binding>
+										<crown-binding event="change" name="CSK_ImagePlayer/setResizeFactor"
+											path="param/args/factor" auto-commit>
+										</crown-binding>
+									</davinci-slider>
+								</layout-row>
+							</layout-column>
+						</layout-row>
+						<layout-row id="RowLayout5">
+							<layout-column id="Column_PersistentData"
+								class="myCustomFrame_CSK_Module_ImagePlayer"
+								style="align-items: stretch">
+								<layout-row id="RowLayout41"
+									style="justify-content: space-between; align-items: center">
+									<layout-column id="ColumnLayout51" style="align-items: stretch">
+										<davinci-value-display id="VD_ParameterName" value="Parameter name:"
+											title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+										</davinci-value-display>
+									</layout-column>
+									<layout-column id="ColumnLayout62" style="align-items: stretch">
+										<davinci-text-field id="TF_ParameterName" type="text"
+											title="Name of the parameters within the CSK_PersistentData module to be uses for this module.">
+											<crown-edpws-binding property="value"
+												name="CSK_ImagePlayer/OnNewParameterName" update-on-resume>
+											</crown-edpws-binding>
+											<crown-binding event="change" name="CSK_ImagePlayer/setParameterName"
+												path="param/args/name" auto-commit>
+											</crown-binding>
+											<crown-edpws-binding property="disabled"
+												name="CSK_ImagePlayer/OnPersistentDataModuleAvailable"
+												update-on-resume converter="function(value) {return !value;}">
+											</crown-edpws-binding>
+										</davinci-text-field>
+									</layout-column>
+								</layout-row>
+								<layout-row id="RowLayout2"
+									style="justify-content: space-between; align-items: center">
+									<davinci-value-display id="VD_LoadConfig"
+										value="Load config on app start:"
+										title="Load configured parameters from CSK_PersistentData on app start.">
+									</davinci-value-display>
+									<davinci-checkbox id="CB_LoadConfig"
+										title="Load configured parameters from CSK_PersistentData on app start.">
+										<span></span>
+										<crown-edpws-binding property="checked"
+											name="CSK_ImagePlayer/OnNewStatusLoadParameterOnReboot"
+											update-on-resume>
+										</crown-edpws-binding>
+										<crown-edpws-binding property="disabled"
+											name="CSK_ImagePlayer/OnPersistentDataModuleAvailable"
+											update-on-resume converter="function(value) {return !value;}">
+										</crown-edpws-binding>
+										<crown-binding event="change" name="CSK_ImagePlayer/setLoadOnReboot"
+											path="param/args/status" auto-commit>
+										</crown-binding>
+									</davinci-checkbox>
+								</layout-row>
+								<layout-row id="RowLayout3">
+									<layout-column id="ColumnLayout3" style="align-items: stretch">
+										<davinci-button id="B_LoadConfig" type="primary"
+											icon-position="append"
+											title="Load configured parameters from CSK_PersistentData module.">
+											<span>Load Config</span>
+											<crown-binding event="submit" name="CSK_ImagePlayer/loadParameters"
+												auto-commit>
+											</crown-binding>
+											<crown-edpws-binding property="disabled"
+												name="CSK_ImagePlayer/OnPersistentDataModuleAvailable"
+												update-on-resume converter="function(value) {return !value;}">
+											</crown-edpws-binding>
+										</davinci-button>
+									</layout-column>
+									<layout-column id="ColumnLayout4" style="align-items: stretch">
+										<davinci-button id="B_SaveConfig" type="primary"
+											icon-position="append">
+											<span>Save Config</span>
+											<crown-binding event="submit" name="CSK_ImagePlayer/sendParameters"
+												auto-commit>
+											</crown-binding>
+											<crown-edpws-binding property="disabled"
+												name="CSK_ImagePlayer/OnPersistentDataModuleAvailable"
+												update-on-resume converter="function(value) {return !value;}">
+											</crown-edpws-binding>
+										</davinci-button>
+									</layout-column>
+								</layout-row>
+							</layout-column>
+						</layout-row>
+					</layout-column>
+					<layout-column id="ColumnLayout2" style="align-items: stretch">
+						<stacked-view id="SV_PageCalled">
+							<crown-binding property="value" name="CSK_ImagePlayer/pageCalled"
+								path="result/data/empty" auto-update="0" update-on-resume>
+							</crown-binding>
+						</stacked-view>
+					</layout-column>
+				</layout-row>
+			</stacked-pane>
+			<stacked-pane id="SP_NotLoggedIn" value="false">
+				<davinci-callout id="Callout1" type="info">
+					<span>
+						Please login with minimum user level Maintenance to see this page.
+					</span>
+				</davinci-callout>
+			</stacked-pane>
+			<crown-edpws-binding property="value"
+				name="CSK_ImagePlayer/OnUserLevelMaintenanceActive"
+				update-on-resume
+				converter="function(value) {return value.toString();}">
+			</crown-edpws-binding>
+		</stacked-view>
+	</layout-column>
+</layout-row>
