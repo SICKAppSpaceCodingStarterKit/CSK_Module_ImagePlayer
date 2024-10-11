@@ -52,14 +52,11 @@ table.insert(imagePlayer_Model.availableSources, '/resources')
 imagePlayer_Model.listOfFolders = ''
 imagePlayer_Model.selectedFileSource = '/resources' -- File source selected out of list
 
---fileManager_Model.listOfFiles = {} -- List of available files on device
---fileManager_Model.selectedFile = '' -- Full path of file selected out of list (exkl. fileSource, see above)
---fileManager_Model.selectedFilename = '' -- Reduced filename out of full path
-
 -- Parameters to be saved permanently if wanted
 imagePlayer_Model.parameters = {}
+imagePlayer_Model.parameters.flowConfigPriority = CSK_FlowConfig ~= nil or false -- Status if FlowConfig should have priority for FlowConfig relevant configurations
 imagePlayer_Model.parameters.viewerActive = false -- Images should be shown in UI viewer
-imagePlayer_Model.parameters.path = 'resources/CSK_Module_ImagePlayer'-- Path to images like 'public/images'
+imagePlayer_Model.parameters.path = 'resources/CSK_Module_ImagePlayer/ColorPins'-- Path to images like 'public/images'
 imagePlayer_Model.parameters.dataTypes = 'jpg' --'jpg, JPG, bmp, BMP, png, PNG' -- Image type to load
 imagePlayer_Model.parameters.cycleTime = 1000 -- Loading new images after x [ms]
 imagePlayer_Model.parameters.forwardImage = true -- Should loaded images be forwarded to other modules via "OnNewImage" event

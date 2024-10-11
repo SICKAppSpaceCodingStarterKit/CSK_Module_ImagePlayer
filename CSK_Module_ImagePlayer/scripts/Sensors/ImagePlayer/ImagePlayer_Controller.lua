@@ -24,10 +24,6 @@ Script.serveEvent('CSK_ImagePlayer.OnNewStatusModuleVersion', 'ImagePlayer_OnNew
 Script.serveEvent('CSK_ImagePlayer.OnNewStatusCSKStyle', 'ImagePlayer_OnNewStatusCSKStyle')
 Script.serveEvent('CSK_ImagePlayer.OnNewStatusModuleIsActive', 'ImagePlayer_OnNewStatusModuleIsActive')
 
-Script.serveEvent("CSK_ImagePlayer.OnNewStatusLoadParameterOnReboot", "ImagePlayer_OnNewStatusLoadParameterOnReboot")
-Script.serveEvent("CSK_ImagePlayer.OnPersistentDataModuleAvailable", "ImagePlayer_OnPersistentDataModuleAvailable")
-Script.serveEvent("CSK_ImagePlayer.OnNewParameterName", "ImagePlayer_OnNewParameterName")
-
 Script.serveEvent("CSK_ImagePlayer.OnNewStatusViewerActive", "ImagePlayer_OnNewStatusViewerActive")
 Script.serveEvent("CSK_ImagePlayer.OnNewCycleTime", "ImagePlayer_OnNewCycleTime")
 Script.serveEvent("CSK_ImagePlayer.OnNewImage", "ImagePlayer_OnNewImage")
@@ -39,7 +35,12 @@ Script.serveEvent("CSK_ImagePlayer.OnPlayerActive", "ImagePlayer_OnPlayerActive"
 Script.serveEvent('CSK_ImagePlayer.OnNewStatusFolderList', 'ImagePlayer_OnNewStatusFolderList')
 Script.serveEvent("CSK_ImagePlayer.OnNewPath", "ImagePlayer_OnNewPath")
 Script.serveEvent("CSK_ImagePlayer.OnNewImageType", "ImagePlayer_OnNewImageType")
+
+Script.serveEvent('CSK_ImagePlayer.OnNewStatusFlowConfigPriority', 'ImagePlayer_OnNewStatusFlowConfigPriority')
 Script.serveEvent("CSK_ImagePlayer.OnDataLoadedOnReboot", "ImagePlayer_OnDataLoadedOnReboot")
+Script.serveEvent("CSK_ImagePlayer.OnNewStatusLoadParameterOnReboot", "ImagePlayer_OnNewStatusLoadParameterOnReboot")
+Script.serveEvent("CSK_ImagePlayer.OnPersistentDataModuleAvailable", "ImagePlayer_OnPersistentDataModuleAvailable")
+Script.serveEvent("CSK_ImagePlayer.OnNewParameterName", "ImagePlayer_OnNewParameterName")
 
 Script.serveEvent("CSK_ImagePlayer.OnUserLevelOperatorActive", "ImagePlayer_OnUserLevelOperatorActive")
 Script.serveEvent("CSK_ImagePlayer.OnUserLevelMaintenanceActive", "ImagePlayer_OnUserLevelMaintenanceActive")
@@ -144,7 +145,7 @@ local function handleOnExpiredTmrImagePlayer()
   updateUserLevel()
   updateFolderList()
 
-  Script.notifyEvent("ImagePlayer_OnNewStatusModuleVersion", imagePlayer_Model.version)
+  Script.notifyEvent("ImagePlayer_OnNewStatusModuleVersion", 'v' .. imagePlayer_Model.version)
   Script.notifyEvent("ImagePlayer_OnNewStatusCSKStyle", imagePlayer_Model.styleForUI)
   Script.notifyEvent("ImagePlayer_OnNewStatusModuleIsActive", _G.availableAPIs.default and _G.availableAPIs.specific)
 
@@ -152,13 +153,16 @@ local function handleOnExpiredTmrImagePlayer()
   Script.notifyEvent("ImagePlayer_OnNewCycleTime", imagePlayer_Model.parameters.cycleTime)
   Script.notifyEvent("ImagePlayer_OnNewResizeFactor", imagePlayer_Model.parameters.resizeFactor)
   Script.notifyEvent("ImagePlayer_OnNewStatusForwardImage", imagePlayer_Model.parameters.forwardImage)
-  Script.notifyEvent("ImagePlayer_OnNewStatusLoadParameterOnReboot", imagePlayer_Model.parameterLoadOnReboot)
-  Script.notifyEvent("ImagePlayer_OnPersistentDataModuleAvailable", imagePlayer_Model.persistentModuleAvailable)
-  Script.notifyEvent("ImagePlayer_OnNewParameterName", imagePlayer_Model.parametersName)
+
   Script.notifyEvent("ImagePlayer_OnPlayerActive", imagePlayer_Model.playerActive)
   Script.notifyEvent("ImagePlayer_OnNewStatusFolderList", imagePlayer_Model.helperFuncs.createJsonList(imagePlayer_Model.listOfFolders))
   Script.notifyEvent("ImagePlayer_OnNewPath", imagePlayer_Model.parameters.path)
   Script.notifyEvent("ImagePlayer_OnNewImageType", imagePlayer_Model.parameters.dataTypes)
+
+  Script.notifyEvent("ImagePlayer_OnNewStatusFlowConfigPriority", imagePlayer_Model.parameters.flowConfigPriority)
+  Script.notifyEvent("ImagePlayer_OnNewStatusLoadParameterOnReboot", imagePlayer_Model.parameterLoadOnReboot)
+  Script.notifyEvent("ImagePlayer_OnPersistentDataModuleAvailable", imagePlayer_Model.persistentModuleAvailable)
+  Script.notifyEvent("ImagePlayer_OnNewParameterName", imagePlayer_Model.parametersName)
 
 end
 Timer.register(tmrImagePlayer, "OnExpired", handleOnExpiredTmrImagePlayer)
@@ -308,6 +312,13 @@ local function setLoadOnReboot(status)
   Script.notifyEvent("ImagePlayer_OnNewStatusLoadParameterOnReboot", status)
 end
 Script.serveFunction("CSK_ImagePlayer.setLoadOnReboot", setLoadOnReboot)
+
+local function setFlowConfigPriority(status)
+  imagePlayer_Model.parameters.flowConfigPriority = status
+  _G.logger:fine(nameOfModule .. ": Set new status of FlowConfig priority: " .. tostring(status))
+  Script.notifyEvent("ImagePlayer_OnNewStatusFlowConfigPriority", imagePlayer_Model.parameters.flowConfigPriority)
+end
+Script.serveFunction('CSK_ImagePlayer.setFlowConfigPriority', setFlowConfigPriority)
 
 --- Function to react on initial load of persistent parameters
 local function handleOnInitialDataLoaded()

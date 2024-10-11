@@ -152,6 +152,25 @@
                                                                 </layout-column>
                                                                 <layout-column id="ColumnLayout79"
                                                                     style="align-items: stretch">
+                                                                    <layout-row id="RowLayout56"
+                                                                        style="align-items: center; justify-content: space-between">
+                                                                        <davinci-value-display id="VD_FLowConfigPrio"
+                                                                            value="Flow config priority:"
+                                                                            title="FlowConfig priority for FlowConfig relevant configurations.">
+                                                                        </davinci-value-display>
+                                                                        <davinci-checkbox id="CB_FlowConfigPrio"
+                                                                            title="FlowConfig priority for FlowConfig relevant configurations.">
+                                                                            <span></span>
+                                                                            <crown-edpws-binding property="checked"
+                                                                                name="CSK_ImagePlayer/OnNewStatusFlowConfigPriority"
+                                                                                update-on-resume>
+                                                                            </crown-edpws-binding>
+                                                                            <crown-binding event="change"
+                                                                                name="CSK_ImagePlayer/setFlowConfigPriority"
+                                                                                path="param/args/status" auto-commit>
+                                                                            </crown-binding>
+                                                                        </davinci-checkbox>
+                                                                    </layout-row>
                                                                 </layout-column>
                                                             </layout-row>
                                                         </davinci-collapse>
@@ -174,71 +193,82 @@
                                     <layout-column id="ColumnLayout24" style="align-items: stretch">
                                         <layout-row id="RowLayout16">
                                             <layout-column id="ColumnLayout5" style="align-items: stretch">
-                                                <layout-row id="RowLayout8"
-                                                    style="justify-content: flex-end; align-items: center">
-                                                    <davinci-value-display id="VD_ViewerActive" value="Viewer active:">
-                                                    </davinci-value-display>
-                                                    <davinci-toggle-switch id="TS_ViewerActive">
-                                                        <crown-binding event="change"
-                                                            name="CSK_ImagePlayer/setViewerActive"
-                                                            path="param/args/status" auto-commit>
-                                                        </crown-binding>
-                                                        <crown-edpws-binding property="checked"
-                                                            name="CSK_ImagePlayer/OnNewStatusViewerActive"
-                                                            update-on-resume>
-                                                        </crown-edpws-binding>
-                                                    </davinci-toggle-switch>
+                                                <layout-row id="RowLayout22" style="align-items: center">
+                                                    <layout-column id="ColumnLayout3" style="align-items: stretch">
+                                                        <stacked-view id="SV_PlayerActive">
+                                                            <stacked-pane id="SP_PlayerNotActive" value="false">
+                                                                <layout-row id="RowLayout4" style="align-items: center">
+                                                                    <davinci-button id="Button_Start"
+                                                                        class="myCustomPlayerButton_CSK_Module_ImagePlayer"
+                                                                        type="outline" icon-position="append"
+                                                                        icon="av/play_arrow" title="Start">
+                                                                        <span></span>
+                                                                        <crown-binding event="submit"
+                                                                            name="CSK_ImagePlayer/startProvider"
+                                                                            auto-commit>
+                                                                        </crown-binding>
+                                                                    </davinci-button>
+                                                                    <davinci-button id="Button_SingleTrigger"
+                                                                        class="myCustomPlayerButton_CSK_Module_ImagePlayer"
+                                                                        type="outline" icon-position="append"
+                                                                        title="SingleTrigger" icon="navigation/refresh">
+                                                                        <span></span>
+                                                                        <crown-binding event="submit"
+                                                                            name="CSK_ImagePlayer/triggerOnce"
+                                                                            auto-commit>
+                                                                        </crown-binding>
+                                                                    </davinci-button>
+                                                                </layout-row>
+                                                            </stacked-pane>
+                                                            <stacked-pane id="SP_PlayerActive" value="true">
+                                                                <layout-row id="RowLayout5" style="align-items: center">
+                                                                    <davinci-button id="Button_Stop"
+                                                                        class="myCustomPlayerButton_CSK_Module_ImagePlayer"
+                                                                        type="outline" icon-position="append"
+                                                                        title="Stop" icon="av/stop">
+                                                                        <span></span>
+                                                                        <crown-binding event="submit"
+                                                                            name="CSK_ImagePlayer/stopProvider"
+                                                                            auto-commit>
+                                                                        </crown-binding>
+                                                                    </davinci-button>
+                                                                </layout-row>
+                                                            </stacked-pane>
+                                                            <crown-edpws-binding property="value"
+                                                                name="CSK_ImagePlayer/OnPlayerActive" update-on-resume
+                                                                converter="function(value) {return value.toString();}">
+                                                            </crown-edpws-binding>
+                                                        </stacked-view>
+                                                    </layout-column>
+                                                    <layout-column id="ColumnLayout4" style="align-items: stretch">
+                                                        <layout-row id="RowLayout8"
+                                                            style="justify-content: flex-end; align-items: center">
+                                                            <davinci-value-display id="VD_ViewerActive"
+                                                                value="Viewer active:">
+                                                            </davinci-value-display>
+                                                            <davinci-toggle-switch id="TS_ViewerActive">
+                                                                <crown-binding event="change"
+                                                                    name="CSK_ImagePlayer/setViewerActive"
+                                                                    path="param/args/status" auto-commit>
+                                                                </crown-binding>
+                                                                <crown-edpws-binding property="checked"
+                                                                    name="CSK_ImagePlayer/OnNewStatusViewerActive"
+                                                                    update-on-resume>
+                                                                </crown-edpws-binding>
+                                                            </davinci-toggle-switch>
+                                                        </layout-row>
+                                                    </layout-column>
                                                 </layout-row>
                                                 <layout-row id="RowLayout14">
                                                     <layout-column id="ColumnLayout23" style="align-items: stretch">
-                                                        <layout-row id="RowLayout15" class="myCustom10pxPlaceholder">
+                                                        <layout-row id="RowLayout15"
+                                                            class="myCustomSpacerVert20_CSK_Module_ImagePlayer">
                                                         </layout-row>
                                                         <sick-viewer2d id="Viewer2D1" class="myCustomViewer"
                                                             viewer-id="ImgPlayerViewer">
                                                         </sick-viewer2d>
                                                     </layout-column>
                                                 </layout-row>
-                                                <stacked-view id="SV_PlayerActive">
-                                                    <stacked-pane id="SP_PlayerNotActive" value="false">
-                                                        <layout-row id="RowLayout4" style="justify-content: flex-end">
-                                                            <davinci-button id="Button_Start"
-                                                                class="myCustomButton_CSK_Module_ImagePlayer"
-                                                                type="outline" icon-position="append"
-                                                                icon="av/play_arrow" title="Start">
-                                                                <span></span>
-                                                                <crown-binding event="submit"
-                                                                    name="CSK_ImagePlayer/startProvider" auto-commit>
-                                                                </crown-binding>
-                                                            </davinci-button>
-                                                            <davinci-button id="Button_SingleTrigger"
-                                                                class="myCustomButton_CSK_Module_ImagePlayer"
-                                                                type="outline" icon-position="append"
-                                                                title="SingleTrigger" icon="navigation/refresh">
-                                                                <span></span>
-                                                                <crown-binding event="submit"
-                                                                    name="CSK_ImagePlayer/triggerOnce" auto-commit>
-                                                                </crown-binding>
-                                                            </davinci-button>
-                                                        </layout-row>
-                                                    </stacked-pane>
-                                                    <stacked-pane id="SP_PlayerActive" value="true">
-                                                        <layout-row id="RowLayout5" style="justify-content: flex-end">
-                                                            <davinci-button id="Button_Stop"
-                                                                class="myCustomButton_CSK_Module_ImagePlayer"
-                                                                type="outline" icon-position="append" title="Stop"
-                                                                icon="av/stop">
-                                                                <span></span>
-                                                                <crown-binding event="submit"
-                                                                    name="CSK_ImagePlayer/stopProvider" auto-commit>
-                                                                </crown-binding>
-                                                            </davinci-button>
-                                                        </layout-row>
-                                                    </stacked-pane>
-                                                    <crown-edpws-binding property="value"
-                                                        name="CSK_ImagePlayer/OnPlayerActive" update-on-resume
-                                                        converter="function(value) {return value.toString();}">
-                                                    </crown-edpws-binding>
-                                                </stacked-view>
                                             </layout-column>
                                         </layout-row>
                                     </layout-column>
@@ -279,7 +309,8 @@
                                                 <layout-row id="RowLayout7"
                                                     style="align-items: center; justify-content: space-between">
                                                     <layout-column id="ColumnLayout15" style="align-items: stretch">
-                                                        <davinci-value-display id="VD_CycleTime" value="Cycle time:">
+                                                        <davinci-value-display id="VD_CycleTime"
+                                                            value="Cycle time [ms]:">
                                                         </davinci-value-display>
                                                     </layout-column>
                                                     <layout-column id="ColumnLayout16" style="align-items: stretch">
@@ -357,12 +388,13 @@
                                                     <layout-column id="ColumnLayout21" style="align-items: stretch">
                                                         <davinci-value-display id="VD_ResizeFactor"
                                                             value="Image resize factor:"
-                                                            title="Factor to rescale the loaded images.">
+                                                            title="Factor to rescale the loaded images in x and y direction using a 2x2 bilinear interpolation.">
                                                         </davinci-value-display>
                                                     </layout-column>
                                                     <layout-column id="ColumnLayout22" style="align-items: stretch">
                                                         <davinci-slider id="S_ResizeFactor" min="0.1" max="1"
-                                                            ticks="0.1" title="Factor to rescale the loaded images."
+                                                            ticks="0.1"
+                                                            title="Factor to rescale the loaded images in x and y direction using a 2x2 bilinear interpolation."
                                                             style="width: 100%">
                                                             <span></span>
                                                             <crown-edpws-binding property="value"

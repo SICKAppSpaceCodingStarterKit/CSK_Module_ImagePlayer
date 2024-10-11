@@ -110,6 +110,10 @@ This event will be notified if the resizeFactor was changed via "setResizeFactor
                     <desc>Notify if module can be used on device.</desc>
                     <param desc="Status" multiplicity="1" name="status" type="bool"/>
                 </event>
+                <event name="OnNewStatusFlowConfigPriority">
+                    <desc>Notify if FlowConfig should have priority for FlowConfig relevant configurations.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
+                </event>
                 <function name="setParameterName">
                     <desc>Function to set the name of the parameters if saved/loaded via the CSK_PersistentData module.</desc>
                     <param desc="Name of the parameter." multiplicity="1" name="name" type="string"/>
@@ -178,6 +182,10 @@ INFO: If the internal resizeFactor is changed, this module will notify the "OnNe
                 </function>
                 <function name="resetModule">
                     <desc>Function to reset main configuration of module.</desc>
+                </function>
+                <function name="setFlowConfigPriority">
+                    <desc>Function to configure if FlowConfig should have priority for FlowConfig relevant configuration.</desc>
+                    <param desc="Status" multiplicity="1" name="status" type="bool"/>
                 </function>
             </serves>
         </crown>

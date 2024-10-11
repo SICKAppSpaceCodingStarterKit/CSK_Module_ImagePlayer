@@ -4,7 +4,7 @@
 
 .myCustomViewer {
   width: 98%;
-  height: 500px;
+  height: 600px;
   margin: auto;
 }
 
@@ -84,4 +84,10 @@
 .myCustomButton_CSK_Module_ImagePlayer {
   border-radius: 30px;
   padding-right: 0px;
+}
+
+.myCustomPlayerButton_CSK_Module_ImagePlayer {
+  border-radius: 30px;
+  padding-right: 0px;
+  margin-block: revert;
 }
