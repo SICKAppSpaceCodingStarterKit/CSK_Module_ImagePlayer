@@ -61,8 +61,6 @@ local function checkIfFolder(path, list)
     for key, value in pairs(listOfContent) do
       local isFolder = File.isdir(path .. '/' .. value)
       if isFolder then
-        --print(path .. '/' .. value)
-        --list = list .. path .. '/' .. value .. ', '
         local pathName = path .. '/' .. value
         list[pathName] = pathName
         checkIfFolder(pathName, list)
@@ -75,13 +73,9 @@ end
 local function updateFolderList()
   local listOfFolders = {}
   for key, value in pairs(imagePlayer_Model.availableSources) do
-    --local newList = checkIfFolder(value, listOfFolders)
-    --listOfFolders = listOfFolders .. newList
     listOfFolders[value] = value
     listOfFolders = checkIfFolder(value, listOfFolders)
   end
-  --print(listOfFolders)
-  --print(imagePlayer_Model.helperFuncs.createJsonList(listOfFolders))
   imagePlayer_Model.listOfFolders = listOfFolders
 end
 

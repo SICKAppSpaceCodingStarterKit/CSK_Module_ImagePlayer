@@ -27,6 +27,8 @@ local function loadAPIs()
       CSK_PersistentData = require 'API.CSK_PersistentData'
     elseif appList[i] == 'CSK_Module_UserManagement' then
       CSK_UserManagement = require 'API.CSK_UserManagement'
+    elseif appList[i] == 'CSK_Module_FlowConfig' then
+      CSK_FlowConfig = require 'API.CSK_FlowConfig'
     end
   end
 end
