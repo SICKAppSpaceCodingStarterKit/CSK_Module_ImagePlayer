@@ -42,6 +42,11 @@ _G.logHandle:applyConfig()
 -- Loading script regarding ImagePlayer_Model
 -- Check this script regarding ImagePlayer_Model parameters and functions
 _G.imagePlayer_Model = require('Sensors/ImagePlayer/ImagePlayer_Model')
+require('Sensors/ImagePlayer/FlowConfig/ImagePlayer_FlowConfig')
+
+if _G.availableAPIs.default == false or _G.availableAPIs.specific == false then
+  _G.logger:warning("CSK_ImagePlayer: Relevant CROWN(s) not available on device. Module is not supported...")
+end
 
 --**************************************************************************
 --**********************End Global Scope ***********************************

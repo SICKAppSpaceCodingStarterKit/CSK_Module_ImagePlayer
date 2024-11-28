@@ -17,6 +17,24 @@ funcs.json = require('Sensors/ImagePlayer/helper/Json')
 --**********************Start Function Scope *******************************
 --**************************************************************************
 
+--- Function to create a list with numbers
+---@param size int Size of the list
+---@return string list List of numbers
+local function createStringListBySize(size)
+  local list = "["
+  if size >= 1 then
+    list = list .. '"' .. tostring(1) .. '"'
+  end
+  if size >= 2 then
+    for i=2, size do
+      list = list .. ', ' .. '"' .. tostring(i) .. '"'
+    end
+  end
+  list = list .. "]"
+  return list
+end
+funcs.createStringListBySize = createStringListBySize
+
 --- Function to convert a table into a Container object
 ---@param content auto[] Lua Table to convert to Container
 ---@return Container cont Created Container
@@ -79,6 +97,54 @@ local function convertContainer2Table(cont)
   return data
 end
 funcs.convertContainer2Table = convertContainer2Table
+
+--- Function to get content list out of table
+---@param data string[] Table with data entries
+---@return string sortedTable Sorted entries as string, internally seperated by ','
+local function createContentList(data)
+  local sortedTable = {}
+  for key, _ in pairs(data) do
+    table.insert(sortedTable, key)
+  end
+  table.sort(sortedTable)
+  return table.concat(sortedTable, ',')
+end
+funcs.createContentList = createContentList
+
+--- Function to get content list as JSON string
+---@param data string[] Table with data entries
+---@return string sortedTable Sorted entries as JSON string
+local function createJsonList(data)
+  local sortedTable = {}
+  for key, _ in pairs(data) do
+    table.insert(sortedTable, key)
+  end
+  table.sort(sortedTable)
+  return funcs.json.encode(sortedTable)
+end
+funcs.createJsonList = createJsonList
+
+--- Function to create a list from table
+---@param content string[] Table with data entries
+---@return string list String list
+local function createStringListBySimpleTable(content)
+  if content then
+    local list = "["
+    if #content >= 1 then
+      list = list .. '"' .. content[1] .. '"'
+    end
+    if #content >= 2 then
+      for i=2, #content do
+        list = list .. ', ' .. '"' .. content[i] .. '"'
+      end
+    end
+    list = list .. "]"
+    return list
+  else
+    return ''
+  end
+end
+funcs.createStringListBySimpleTable = createStringListBySimpleTable
 
 return funcs
 
