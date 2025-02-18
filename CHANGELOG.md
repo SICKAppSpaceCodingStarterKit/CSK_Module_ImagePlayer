@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Release 3.1.0
+
+### Improvements
+- Automatically start image provider after 3 seconds if used within FlowConfig
+- React on "OnStopFlowConfigProviders" event of FlowConfig module to stop provider
+- Optionally setup image path, type and cycle time within FlowConfig block
+- Prevent changing of image type if player is currently active
+
 ## Release 3.0.0
 
 ### New features
