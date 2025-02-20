@@ -208,7 +208,7 @@ INFO: If the internal resizeFactor is changed, this module will notify the "OnNe
                         <desc>Internally used CSK_FlowConfig create function.</desc>
                         <param desc="Path to load images.&#10;(e.g. &quot;resources/CSK_Module_ImagePlayer/ColorPins&quot; (default) or &quot;public/Images&quot;)" multiplicity="?" name="Path" type="string"/>
                         <param desc="Image type (jpg is default)" multiplicity="?" name="ImageType" ref="CSK_ImagePlayer.ImageTypes" type="enum"/>
-                        <param desc="Cycte time to trigger new image in ms (1000 is default)." multiplicity="?" name="CycleTime" type="int"/>
+                        <param desc="Cycle time to trigger new image in ms (1000 is default)." multiplicity="?" name="CycleTime" type="int"/>
                         <return desc="Handle to internally used FlowConfig instance." multiplicity="1" name="handle" type="handle"/>
                     </function>
                     <function name="register">
