@@ -285,6 +285,13 @@
                                                     class="myCustomFrameLabel_CSK_Module_ImagePlayer"
                                                     label="Configuration" style="align-self: flex-start">
                                                 </davinci-value-display>
+                                                <curie-callout id="DC_FlowConfigInfo" type="info"
+                                                    value="FlowConfig priority active.">
+                                                    <crown-edpws-binding property="hidden"
+                                                        name="CSK_ImagePlayer/OnNewStatusFlowConfigPriority"
+                                                        update-on-resume converter="function(value) {return !value;}">
+                                                    </crown-edpws-binding>
+                                                </curie-callout>
                                                 <layout-row id="RowLayout9"
                                                     style="justify-content: space-between; align-items: center">
                                                     <layout-column id="ColumnLayout13" style="align-items: stretch">
@@ -383,6 +390,9 @@
                                                                 name="CSK_ImagePlayer/setImageType"
                                                                 path="param/args/imgType" auto-commit>
                                                             </crown-binding>
+                                                            <crown-edpws-binding property="disabled"
+                                                                name="CSK_ImagePlayer/OnPlayerActive" update-on-resume>
+                                                            </crown-edpws-binding>
                                                         </davinci-drop-down>
                                                     </layout-column>
                                                 </layout-row>

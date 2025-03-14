@@ -7,7 +7,7 @@
 
 require('Sensors.ImagePlayer.FlowConfig.ImagePlayer_OnNewImage')
 
---- Function to react if FlowConfig was updated
+--- Function to react if FlowConfig was updated or stopped
 local function handleOnClearOldFlow()
   if _G.availableAPIs.default and _G.availableAPIs.specific then
     if imagePlayer_Model.parameters.flowConfigPriority then
@@ -16,3 +16,4 @@ local function handleOnClearOldFlow()
   end
 end
 Script.register('CSK_FlowConfig.OnClearOldFlow', handleOnClearOldFlow)
+Script.register('CSK_FlowConfig.OnStopFlowConfigProviders', handleOnStopProvider)
