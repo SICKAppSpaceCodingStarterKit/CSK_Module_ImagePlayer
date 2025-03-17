@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Release 3.1.1
+
+### Bugfix
+- Did not stop the image provider based on "OnStopFlowConfigProviders" event
+
 ## Release 3.1.0
 
 ### Improvements

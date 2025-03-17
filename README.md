@@ -18,6 +18,7 @@ Tested on
 |SICK AppEngine|V1.7.0|V3.1.0|
 |SICK AppEngine|V1.7.0|V3.0.0|
 |SICK AppEngine|V1.3.2|<V3.0.0|
+|SIM1012|V2.4.2|V3.1.1|
 |SIM1012|V2.4.2|V3.0.0|
 |SIM1012|V2.2.0|<V3.0.0|
 |TDC-E|V2.0.0|V4.0.0|

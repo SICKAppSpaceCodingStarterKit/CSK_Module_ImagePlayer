@@ -16,4 +16,4 @@ local function handleOnClearOldFlow()
   end
 end
 Script.register('CSK_FlowConfig.OnClearOldFlow', handleOnClearOldFlow)
-Script.register('CSK_FlowConfig.OnStopFlowConfigProviders', handleOnStopProvider)
+Script.register('CSK_FlowConfig.OnStopFlowConfigProviders', handleOnClearOldFlow)
