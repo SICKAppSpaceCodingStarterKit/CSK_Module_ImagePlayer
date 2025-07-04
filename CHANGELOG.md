@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## Release 3.2.0
+
+### New features
+- Check if persistent data to load provides all relevant parameters. Otherwise add default values
+
+### Bugfix
+- Legacy bindings of ValueDisplay elements within UI did not work if deployed with VS Code AppSpace SDK
+- UI differs if deployed via Appstudio or VS Code AppSpace SDK
+- Fullscreen icon of iFrame was visible
+
 ## Release 3.1.1
 
 ### Bugfix

@@ -223,7 +223,7 @@ INFO: If the internal resizeFactor is changed, this module will notify the "OnNe
             </crown>
         </crown>
         <meta key="author">SICK AG</meta>
-        <meta key="version">3.1.1</meta>
+        <meta key="version">3.2.0</meta>
         <meta key="priority">low</meta>
         <meta key="copy-protected">false</meta>
         <meta key="read-protected">false</meta>

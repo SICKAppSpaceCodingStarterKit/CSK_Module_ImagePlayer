@@ -83,11 +83,11 @@
 
 .myCustomButton_CSK_Module_ImagePlayer {
   border-radius: 30px;
-  padding-right: 0px;
+  padding: 11px;
 }
 
 .myCustomPlayerButton_CSK_Module_ImagePlayer {
   border-radius: 30px;
-  padding-right: 0px;
+  padding: 11px;
   margin-block: revert;
 }
