@@ -284,8 +284,10 @@ local function loadParameters()
   if imagePlayer_Model.persistentModuleAvailable then
     local data = CSK_PersistentData.getParameter(imagePlayer_Model.parametersName)
     if data then
+      clearFlowConfigRelevantConfiguration()
       _G.logger:info(nameOfModule .. ": Loaded parameters from CSK_PersistentData module.")
       imagePlayer_Model.parameters = imagePlayer_Model.helperFuncs.convertContainer2Table(data)
+      imagePlayer_Model.parameters = imagePlayer_Model.helperFuncs.checkParameters(imagePlayer_Model.parameters, imagePlayer_Model.helperFuncs.defaultParameters.getParameters())
       imagePlayer_Model.setup()
       CSK_ImagePlayer.pageCalled()
       return true

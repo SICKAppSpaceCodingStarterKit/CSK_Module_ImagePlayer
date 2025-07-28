@@ -54,14 +54,7 @@ imagePlayer_Model.selectedFileSource = '/resources' -- File source selected out 
 
 -- Parameters to be saved permanently if wanted
 imagePlayer_Model.parameters = {}
-imagePlayer_Model.parameters.flowConfigPriority = CSK_FlowConfig ~= nil or false -- Status if FlowConfig should have priority for FlowConfig relevant configurations
-imagePlayer_Model.parameters.viewerActive = false -- Images should be shown in UI viewer
-imagePlayer_Model.parameters.path = 'resources/CSK_Module_ImagePlayer/ColorPins'-- Path to images like 'public/images'
-imagePlayer_Model.parameters.dataTypes = 'jpg' --'jpg, JPG, bmp, BMP, png, PNG' -- Image type to load
-imagePlayer_Model.parameters.cycleTime = 1000 -- Loading new images after x [ms]
-imagePlayer_Model.parameters.forwardImage = true -- Should loaded images be forwarded to other modules via "OnNewImage" event
-imagePlayer_Model.parameters.imagePoolSize = 50 -- Image pool size to load images
-imagePlayer_Model.parameters.resizeFactor = 1.0 -- Resize factor to scale images
+imagePlayer_Model.parameters = imagePlayer_Model.helperFuncs.defaultParameters.getParameters() -- Load default parameters
 
 --**************************************************************************
 --********************** End Global Scope **********************************
